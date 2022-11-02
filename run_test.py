@@ -1,13 +1,26 @@
 import importlib.machinery
-import pso_test
+import os
 import sys
 from inspect import getmembers, isfunction
 
 def line():
   print(u'\u2500' * 50)
 
-name = sys.argv[1]
-module = importlib.machinery.SourceFileLoader("name", './{}.py'.format(name)).load_module()
+file = sys.argv[1]
+name = os.path.splitext(file)[0]
+
+while True:
+  print(name, file)
+  try:
+    module = importlib.machinery.SourceFileLoader(name, './{}'.format(file)).load_module()
+    break
+
+  except:
+    print("file not found.")
+    file = input("Please re-enter file or type EXIT!: ")
+    if file == "EXIT!":
+      break
+
 functions = getmembers(module, isfunction)
 total_tests = 0
 passed = 0
