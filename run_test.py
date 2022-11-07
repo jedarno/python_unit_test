@@ -7,16 +7,19 @@ def line():
   print(u'\u2500' * 50)
 
 file = sys.argv[1]
+path = "./" + file
 name = os.path.splitext(file)[0]
 
 while True:
-  print(name, file)
+  print(os.getcwd())
+  print(file, name, path)
   try:
-    module = importlib.machinery.SourceFileLoader(name, './{}'.format(file)).load_module()
+    module = importlib.machinery.SourceFileLoader(name, path).load_module()
     break
 
-  except:
-    print("file not found.")
+  except Exception as e:
+    print(e)
+    print("file {} not found.".format(file))
     file = input("Please re-enter file or type EXIT!: ")
     if file == "EXIT!":
       break
