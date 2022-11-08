@@ -31,15 +31,17 @@ passed = 0
 for name, test in functions:
 
   if name[0:4] == "test":
+    line()
     total_tests += 1
     result = test()
     if result == True:
+      print(name + " Passed!")
       passed += 1
     else: 
-      line()
       print(name)
       print(result)
-      line()
+
+    line()
 
 
 line()
