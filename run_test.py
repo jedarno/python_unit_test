@@ -4,7 +4,8 @@ import sys
 from inspect import getmembers, isfunction
 
 def line():
-  print(u'\u2500' * 50)
+  term_size = os.get_terminal_size()
+  print('\u2500' * term_size.columns)
 
 file = sys.argv[1]
 path = "./" + file
